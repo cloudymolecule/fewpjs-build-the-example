@@ -10,20 +10,11 @@ const hearts = document.querySelectorAll('.like-glyph')
 
 for (let i = 0; i < hearts.length; i++) {
   let heart = hearts[i]
-  // heart.setAttribute('id', (i + 1))
-
-  function fakeRequest() {
-    function heartSwitch() {
-      if (heart.innerHTML == FULL_HEART){
-        heart.innerHTML = EMPTY_HEART
-        heart.classList.remove('activated-heart')
-      } else {
-        heart.innerHTML = FULL_HEART
-        heart.classList.add('activated-heart')
-      }
-    }
+  
+  heart.addEventListener('click', () => {
     mimicServerCall().then(function(response) {
-      heartSwitch()
+      heart.innerHTML = FULL_HEART
+      heart.classList.add('activated-heart')
     }).catch(function(error) {
       heart.innerHTML = EMPTY_HEART
       heart.classList.remove('activated-heart')
@@ -35,9 +26,6 @@ for (let i = 0; i < hearts.length; i++) {
         hidden.classList.add('hidden')
       }
     })
-  }
-  heart.addEventListener('click', () => {
-    fakeRequest()
   })
 }
 
